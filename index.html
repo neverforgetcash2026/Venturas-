@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VENTURAS on Solana</title>
+<meta name="description" content="Welcome to Las Venturas. The city of fortune, chaos and endless possibilities. A Solana memecoin.">
+<meta property="og:title" content="VENTURAS — Welcome to Las Venturas">
+<meta property="og:description" content="The city of fortune, chaos and endless possibilities. On Solana.">
+<meta property="og:image" content="hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: loud, late-night, casino-strip swagger, short lines
+   IDEA: the page is a Las Venturas casino marquee — chase lights, sign boards, a slot machine
+   PICTURE: the project's own neon strip artwork, full-bleed, plus a playable slot reel
+   COLOUR and TYPE: night plum ground, hot neon pink, marquee gold, cream sign lettering; Bungee + Inter
+   LAYOUT: full-bleed hero, chase-light band, story, strip, slot, contract, how to buy, socials, footer */
+:root{color-scheme:dark;--bg:#12081d;--bg2:#1c0d2c;--card:#241238;--ink:#fff4dc;--mute:#cbb8d9;--pink:#ff3ea5;--gold:#ffc93c;--cyan:#3be0ff;--line:#ffffff1f}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:Bungee,Impact,sans-serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0 0 .4em}
+h2{font-size:clamp(32px,5vw,52px)}
+h3{font-size:20px}
+p{margin:0 0 1em;max-width:62ch}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(48px,7vw,104px) max(5vw,16px)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:12px max(5vw,16px);background:#12081dcc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-family:Bungee,sans-serif;font-size:20px;text-decoration:none;color:var(--ink);text-shadow:0 0 12px var(--pink)}
+.logo span{color:var(--pink)}
+.links{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.links a{text-decoration:none;color:var(--mute);font-weight:600;font-size:15px}
+.links a:hover{color:var(--ink)}
+@media(max-width:760px){.links{display:none}nav .btn{margin-left:auto}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font:800 15px Inter,sans-serif;text-decoration:none;border:2px solid var(--pink);color:var(--ink);background:transparent;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 24px #ff3ea580}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn.hot{background:var(--pink);color:#1a0716}
+.btn.gold{border-color:var(--gold);background:var(--gold);color:#1a0716}
+.btn.soon{opacity:.55;cursor:default;border-style:dashed}
+.btn.soon:hover{transform:none;box-shadow:none}
+nav .btn{min-height:40px;padding:0 16px;font-size:14px}
+
+/* hero */
+.hero{position:relative;min-height:min(92vh,880px);display:grid;align-items:end;background:#000 url(hero.jpg) center 30%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#12081d00 40%,#12081dd9 78%,var(--bg) 100%)}
+.hero .in{position:relative;z-index:1;padding:0 max(5vw,16px) clamp(32px,6vw,72px);max-width:1240px;margin:0 auto;width:100%}
+.tag{font-size:clamp(18px,2.4vw,24px);font-weight:600;max-width:34ch;text-shadow:0 2px 12px #000}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+@media(max-width:760px){.hero{min-height:0;display:block;background:var(--bg)}.hero::before{content:"";display:block;aspect-ratio:1280/832;background:url(hero.jpg) center/cover}.hero::after{display:none}.hero .in{padding-top:24px}.tag{text-shadow:none}}
+.chip{display:inline-block;padding:6px 14px;border-radius:999px;background:#ff3ea526;border:1px solid #ff3ea566;color:#ffd1ea;font-weight:600;font-size:14px;margin-bottom:14px}
+
+/* chase lights */
+.chase{height:16px;background:radial-gradient(circle,var(--gold) 0 3px,transparent 4px) 0 50%/24px 16px repeat-x;animation:chase 1s steps(2) infinite;filter:drop-shadow(0 0 4px var(--gold))}
+@keyframes chase{to{background-position:12px 50%}}
+.marq{overflow:hidden;background:var(--pink);color:#1a0716;font-family:Bungee,sans-serif;font-size:18px;white-space:nowrap;padding:10px 0}
+.marq div{display:inline-block;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* story */
+.split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.frame{border-radius:20px;overflow:hidden;border:2px solid var(--pink);box-shadow:0 0 0 6px #ff3ea51a,0 24px 60px #000a}
+.frame img{display:block;width:100%;height:auto}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(32px,5vw,56px)}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+.pill b{display:block;font-family:Bungee,sans-serif;font-weight:400;font-size:22px;color:var(--gold);margin-bottom:6px}
+.pill p{color:var(--mute);margin:0}
+@media(max-width:800px){.split,.pillars{grid-template-columns:minmax(0,1fr)}}
+
+/* slot */
+.slotband{background:radial-gradient(ellipse at 50% 0,#ff3ea533,transparent 60%),var(--bg2)}
+.machine{max-width:560px;margin:28px auto 0;padding:22px;border-radius:28px;background:linear-gradient(180deg,#3a1a52,#1d0c2c);border:3px solid var(--gold);box-shadow:0 0 40px #ffc93c40,inset 0 0 30px #0008}
+.top{font-family:'Bungee Shade',Bungee,sans-serif;text-align:center;font-size:clamp(24px,5vw,34px);color:var(--gold);margin-bottom:14px}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:#0b0412;padding:12px;border-radius:16px}
+.reel{height:110px;border-radius:12px;background:linear-gradient(180deg,#d9cfc0,#fff8ea 45%,#d9cfc0);display:grid;place-items:center;font-family:Bungee,sans-serif;font-size:clamp(30px,8vw,46px);color:#7a0f4a;overflow:hidden}
+.reel.spin span{animation:blur .09s linear infinite}
+@keyframes blur{50%{transform:translateY(-18px);opacity:.4}}
+.msg{text-align:center;min-height:1.6em;margin:14px 0 6px;font-weight:800;color:var(--ink)}
+.msg.win{color:var(--gold);text-shadow:0 0 14px var(--gold)}
+.machine .btn{width:100%;font-size:18px}
+.note{text-align:center;color:var(--mute);font-size:13px;margin:12px auto 0}
+
+/* contract */
+.ca{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:2px dashed #ffc93c80;border-radius:18px;padding:18px 20px;margin-top:20px}
+.ca code{flex:1 1 260px;font:600 16px/1.4 ui-monospace,Menlo,monospace;overflow-wrap:anywhere;color:var(--gold)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--pink);color:#1a0716;font-family:Bungee,sans-serif;font-size:20px;margin-bottom:14px;box-shadow:0 0 18px #ff3ea580}
+.step p{color:var(--mute);margin:0}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+
+/* join */
+.join{text-align:center;background:linear-gradient(180deg,#12081d00,#12081d) ,url(strip.jpg) center/cover;position:relative}
+.join::before{content:"";position:absolute;inset:0;background:#12081dc4}
+.join .wrap{position:relative}
+.join p{margin-inline:auto}
+.join .row{justify-content:center}
+
+footer{padding:32px max(5vw,16px) 48px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;text-align:center}
+footer p{margin:0 auto 8px;max-width:80ch}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--gold);color:#1a0716;font-weight:800;padding:12px 20px;border-radius:999px;transition:transform .25s;z-index:50;visibility:hidden}
+.toast.on{transform:translateX(-50%) translateY(0);visibility:visible}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#top">VENTUR<span>AS</span></a>
+  <div class="links">
+    <a href="#city">The City</a>
+    <a href="#slots">Slots</a>
+    <a href="#contract">Contract</a>
+    <a href="#buy">How to Buy</a>
+    <a href="#join">Community</a>
+  </div>
+  <a class="btn hot" data-link="buy" href="#buy">Buy <span class="tk"></span></a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="in">
+    <span class="chip">On Solana · <span class="tk"></span></span>
+    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">VENTURAS — Welcome to Las Venturas</h1>
+    <p class="tag">The city of fortune, chaos and endless possibilities. Your next stop in the GTA universe.</p>
+    <div class="row">
+      <a class="btn hot" data-link="buy" href="#buy">Buy <span class="tk"></span></a>
+      <a class="btn" data-link="x" href="#">Follow on X</a>
+      <a class="btn" data-link="telegram" href="#">Join Telegram</a>
+    </div>
+  </div>
+</header>
+
+<div class="chase" aria-hidden="true"></div>
+<div class="marq" aria-hidden="true"><div id="marq"></div></div>
+
+<section class="band" id="city">
+  <div class="wrap split">
+    <div>
+      <h2>Welcome to Las Venturas</h2>
+      <p>Out in the desert, past the last gas station, the lights never go off. Casinos stacked on casinos, neon cowboys on every rooftop, cabs racing down the strip at 3 a.m.</p>
+      <p>This is where fortunes get made and lost in a single night. Where nobody asks where you came from, only how much you're putting on the table.</p>
+      <p><b>$VENTURAS</b> is the token of that city. Built on Solana, run by its community, made for the ones who walk in and say "let it ride".</p>
+    </div>
+    <div class="frame"><img src="strip.jpg" alt="Las Venturas strip at night with neon casinos, palm trees and taxis" width="1169" height="759" loading="lazy"></div>
+  </div>
+  <div class="wrap pillars">
+    <div class="pill"><b>Fortune</b><p>Every light on the strip is somebody's jackpot. Yours could be next.</p></div>
+    <div class="pill"><b>Chaos</b><p>No rules after midnight. The city moves fast and so does its community.</p></div>
+    <div class="pill"><b>Possibilities</b><p>New city, new stories. This is only the first stop in the GTA universe.</p></div>
+  </div>
+</section>
+
+<section class="band slotband" id="slots">
+  <div class="wrap" style="text-align:center">
+    <h2>Try your luck</h2>
+    <p style="margin-inline:auto;color:var(--mute)">No casino in Las Venturas closes. Pull the lever and see if the city likes you tonight.</p>
+    <div class="machine">
+      <div class="top">LUCKY STRIP</div>
+      <div class="reels">
+        <div class="reel" id="r0"><span>7</span></div>
+        <div class="reel" id="r1"><span>7</span></div>
+        <div class="reel" id="r2"><span>7</span></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">Three of a kind wins.</div>
+      <button class="btn gold" id="spin" type="button">Spin</button>
+      <div class="note">Just for fun. No real money, no prizes.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contract">
+  <div class="wrap">
+    <h2>Contract address</h2>
+    <p style="color:var(--mute)">Always double-check the address before buying. Only trust links posted on the official X account.</p>
+    <div class="ca">
+      <code id="caText"></code>
+      <button class="btn gold" id="copy" type="button">Copy</button>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="buy" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2>How to buy <span class="tk"></span></h2>
+    <div class="steps">
+      <div class="step"><h3>Get a wallet</h3><p>Download Phantom or any Solana wallet and save your recovery phrase somewhere safe.</p></div>
+      <div class="step"><h3>Load up SOL</h3><p>Buy SOL on an exchange and send it to your wallet address.</p></div>
+      <div class="step"><h3>Copy the CA</h3><p>Grab the official contract address from this page or from the X account.</p></div>
+      <div class="step"><h3>Swap for <span class="tk"></span></h3><p>Paste the CA into the swap, choose your amount and welcome to the city.</p></div>
+    </div>
+    <div class="row"><a class="btn hot" data-link="buy" href="#">Buy <span class="tk"></span></a></div>
+  </div>
+</section>
+
+<section class="band join" id="join">
+  <div class="wrap">
+    <h2>The lights are on</h2>
+    <p>Follow the city on X and join the crew on Telegram. Updates, raids and everything that happens on the strip.</p>
+    <div class="row">
+      <a class="btn hot" data-link="x" href="#">X / Twitter</a>
+      <a class="btn" data-link="telegram" href="#">Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 VENTURAS. A community memecoin on Solana with no intrinsic value or expectation of financial return. Nothing on this site is financial advice. Crypto is risky, only use money you can afford to lose.</p>
+  <p>Fan-made project. Not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive.</p>
+</footer>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+{
+/* ===== EDIT HERE ===== leave a value empty ("") and its buttons show "Soon" */
+const CONFIG={
+  ticker:"$VENTURAS",
+  ca:"",                                  // contract address after launch
+  x:"https://x.com/VENTURASbg8",
+  telegram:"",                            // e.g. https://t.me/...
+  buy:""                                  // pump.fun / launchpad / DEX link
+};
+/* ===================== */
+
+document.querySelectorAll('.tk').forEach(e=>e.textContent=CONFIG.ticker);
+document.querySelectorAll('[data-link]').forEach(a=>{
+  const url=CONFIG[a.dataset.link];
+  if(url){a.href=url;a.target="_blank";a.rel="noopener"}
+  else if(a.dataset.link!=="buy"||a.closest('#buy')){
+    a.classList.add('soon');a.removeAttribute('href');a.setAttribute('aria-disabled','true');
+    a.insertAdjacentText('beforeend',' · soon');
+  }
+});
+
+const caText=document.getElementById('caText'),copy=document.getElementById('copy'),toast=document.getElementById('toast');
+caText.textContent=CONFIG.ca||"Coming soon — announced on X";
+if(!CONFIG.ca){copy.classList.add('soon');copy.disabled=true}
+let tt;
+const show=t=>{toast.textContent=t;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),1800)};
+copy.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(CONFIG.ca);show('Contract copied')}
+  catch(e){const r=document.createRange();r.selectNodeContents(caText);const s=getSelection();s.removeAllRanges();s.addRange(r);show('Selected — copy it manually')}
+});
+
+const words=["WELCOME TO LAS VENTURAS","FORTUNE","CHAOS","ENDLESS POSSIBILITIES",CONFIG.ticker,"ON SOLANA","LET IT RIDE"];
+const m=words.map(w=>w+"  ★  ").join('');
+document.getElementById('marq').textContent=(m+m+m+m);
+
+const SYM=["7","BAR","♦","★","♠","V"];
+const reels=[0,1,2].map(i=>document.getElementById('r'+i));
+const msg=document.getElementById('msg'),spin=document.getElementById('spin');
+const lines={
+  win:["JACKPOT! The city loves you tonight.","Three of a kind. Las Venturas pays out.","The house just lost. Welcome, high roller."],
+  two:["So close. The dealer is sweating.","Two out of three. One more pull?","Almost. The strip is watching."],
+  lose:["The house always wins… this time.","Cold machine. Try another pull.","Nothing. Grab a drink and go again."]
+};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+let busy=false;
+spin.addEventListener('click',()=>{
+  if(busy)return;busy=true;spin.disabled=true;msg.className='msg';msg.textContent='Rolling…';
+  const jack=Math.random()<.18,res=jack?Array(3).fill(pick(SYM)):[pick(SYM),pick(SYM),pick(SYM)];
+  reels.forEach((r,i)=>{
+    r.classList.add('spin');
+    const iv=setInterval(()=>r.firstChild.textContent=pick(SYM),70);
+    setTimeout(()=>{
+      clearInterval(iv);r.classList.remove('spin');r.firstChild.textContent=res[i];
+      if(i===2){
+        const u=new Set(res).size;
+        msg.textContent=u===1?pick(lines.win):u===2?pick(lines.two):pick(lines.lose);
+        if(u===1)msg.classList.add('win');
+        busy=false;spin.disabled=false;
+      }
+    },700+i*450);
+  });
+});
+}
+</script>
+</body>
+</html>
